@@ -1,0 +1,24 @@
+{
+  "name": "i-love-ajax",
+  "version": "1.0.0",
+  "description": "The base module of a whole bunch of useful AJAX helpers, built on jQuery.",
+  "keywords": [
+    "i-love-ajax",
+    "ilx",
+    "AJAX",
+    "helper",
+    "jQuery"
+  ],
+  "author": "Flinsch <flinsch@gmx.net>",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/Flinsch/i-love-ajax.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/Flinsch/i-love-ajax",
+  "bugs": "https://github.com/Flinsch/i-love-ajax/issues",
+  "files": [
+    "ilx.js"
+  ],
+  "main": "ilx.js",
+}
