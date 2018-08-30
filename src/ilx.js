@@ -4,9 +4,9 @@
     var ilx = (function() {
 
         var ilx = {};
-        ilx.config = {};
+        ilx.options = {};
 
-        var defaultConfig = {
+        var defaultOptions = {
             selectors: {
                 result: '.ilx-result',
                 success: '.ilx-result .ilx-success',
@@ -17,9 +17,22 @@
             }
         };
 
-        ilx.init = function(config) {
-            ilx.config = $.expand({}, defaultConfig, config);
-            return ilx;
+        $.expand(ilx.options, defaultOptions);
+
+        ilx.setOptions = function(options) {
+            $.expand(ilx.options, options);
+        };
+
+        ilx.setOption = function(name, value) {
+            if (typeof value === 'object' && name in ilx.options && typeof ilx.options[name] === 'object') {
+                $.expand(ilx.options[name], value);
+            } else {
+                ilx.options[name] = value;
+            }
+        };
+
+        ilx.getOption = function(name) {
+            return ilx.options[name];
         };
 
         ilx.isHtmlResponse = function(jqXHR) {
@@ -38,30 +51,31 @@
         };
 
         ilx.filterResult = function($response, selector) {
-            selector = selector || ilx.config.selectors.result;
+            selector = selector || ilx.options.selectors.result;
             return ilx.filterResponse($response, selector);
         };
 
         ilx.filterSuccess = function($response) {
-            return ilx.filterResponse($response, ilx.config.selectors.success);
+            return ilx.filterResponse($response, ilx.options.selectors.success);
         };
 
         ilx.filterError = function($response) {
-            return ilx.filterResponse($response, ilx.config.selectors.error);
+            return ilx.filterResponse($response, ilx.options.selectors.error);
         };
 
         ilx.filterWarning = function($response) {
-            return ilx.filterResponse($response, ilx.config.selectors.warning);
+            return ilx.filterResponse($response, ilx.options.selectors.warning);
         };
 
         ilx.filterInfo = function($response) {
-            return ilx.filterResponse($response, ilx.config.selectors.info);
+            return ilx.filterResponse($response, ilx.options.selectors.info);
         };
 
         ilx.filterContent = function($response) {
-            return ilx.filterResponse($response, ilx.config.selectors.content);
+            return ilx.filterResponse($response, ilx.options.selectors.content);
         };
 
+        return ilx;
     })();
 
     if (typeof module === 'object' && typeof module.exports === 'object') {

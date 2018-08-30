@@ -18,7 +18,17 @@
   "homepage": "https://github.com/Flinsch/i-love-ajax",
   "bugs": "https://github.com/Flinsch/i-love-ajax/issues",
   "files": [
-    "ilx.js"
+    "dist/**/*"
   ],
-  "main": "ilx.js",
+  "main": "dist/ilx.js",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^3.4.0",
+    "grunt-contrib-watch": "^1.1.0"
+  }
 }
