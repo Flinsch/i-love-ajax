@@ -48,6 +48,24 @@
         return content_type && content_type.indexOf('json') > -1;
     };
 
+    ilx.checkResponse = function(jqXHR) {
+        var response = {
+            isHTML: false,
+            isJSON: false,
+            $: $(),
+            data: {}
+        };
+        try {
+            response.$ = $(jqXHR.responseText);
+            response.isHTML = true;
+        } catch (e) {}
+        try {
+            response.data = JSON.parse(jqXHR.responseText);
+            response.isJSON = true;
+        } catch (e) {}
+        return response;
+    };
+
     ilx.filterResponse = function($response, selector) {
         $response = $($response);
         return $response.filter(selector);
