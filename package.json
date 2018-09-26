@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Flinsch/i-love-ajax",
   "bugs": "https://github.com/Flinsch/i-love-ajax/issues",
   "files": [
+    "src/**/*",
     "dist/**/*"
   ],
   "main": "dist/ilx.js",
