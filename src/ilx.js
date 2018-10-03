@@ -20,15 +20,15 @@
         }
     };
 
-    $.extend(ilx.options, defaultOptions);
+    $.extend(true, ilx.options, defaultOptions);
 
     ilx.setOptions = function(options) {
-        $.extend(ilx.options, options);
+        $.extend(true, ilx.options, options);
     };
 
     ilx.setOption = function(name, value) {
         if (typeof value === 'object' && name in ilx.options && typeof ilx.options[name] === 'object') {
-            $.extend(ilx.options[name], value);
+            $.extend(true, ilx.options[name], value);
         } else {
             ilx.options[name] = value;
         }
