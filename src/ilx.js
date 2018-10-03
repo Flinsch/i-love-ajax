@@ -23,12 +23,12 @@
     $.extend(ilx.options, defaultOptions);
 
     ilx.setOptions = function(options) {
-        $.expand(ilx.options, options);
+        $.extend(ilx.options, options);
     };
 
     ilx.setOption = function(name, value) {
         if (typeof value === 'object' && name in ilx.options && typeof ilx.options[name] === 'object') {
-            $.expand(ilx.options[name], value);
+            $.extend(ilx.options[name], value);
         } else {
             ilx.options[name] = value;
         }
