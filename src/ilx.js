@@ -1,11 +1,11 @@
 
 (function(factory) {
     if (typeof module === 'object' && typeof module.exports === 'object') {
-        module.exports = factory(require('jquery'));
+        module.exports = factory(require('jquery'), require('deepmerge'));
     } else {
-        window.ilx = factory(jQuery);
+        window.ilx = factory(jQuery, deepmerge);
     }
-})(function($) {
+})(function($, deepmerge) {
     var ilx = {};
     ilx.options = {};
 
@@ -35,22 +35,30 @@
         },
     };
 
-    $.extend(true, ilx.options, defaultOptions);
+    ilx.options = deepmerge(ilx.options, defaultOptions, { arrayMerge: function(destinationArray, sourceArray, options) { return sourceArray; } });
+
+    ilx.getOptions = function() {
+        return ilx.options;
+    };
 
     ilx.setOptions = function(options) {
-        $.extend(true, ilx.options, options);
+        ilx.options = deepmerge(ilx.options, options, { arrayMerge: function(destinationArray, sourceArray, options) { return sourceArray; } });
+    };
+
+    ilx.getOption = function(name) {
+        if (name in ilx.options) {
+            return ilx.options[name];
+        } else {
+            return null;
+        }
     };
 
     ilx.setOption = function(name, value) {
         if (typeof value === 'object' && name in ilx.options && typeof ilx.options[name] === 'object') {
-            $.extend(true, ilx.options[name], value);
+            ilx.options[name] = deepmerge(ilx.options[name], value, { arrayMerge: function(destinationArray, sourceArray, options) { return sourceArray; } });
         } else {
             ilx.options[name] = value;
         }
-    };
-
-    ilx.getOption = function(name) {
-        return ilx.options[name];
     };
 
     ilx.isHtmlResponse = function(jqXHR) {
