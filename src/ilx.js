@@ -140,11 +140,11 @@
 
         _fetching[url] = true;
 
-        var settings = {
+        $.ajax({
             url: url,
             data: data,
             method: method,
-            always: function(jqXHR) {
+            complete: function(jqXHR, textStatus) {
                 var response = ilx.checkResponse(jqXHR);
                 if (response.isHTML) {
                     var $response = response.$;
@@ -158,8 +158,7 @@
                     jqXHR: jqXHR
                 }));
             }
-        };
-        $.ajax(settings);
+        });
     };
 
     ilx._class2selector = function(className) {
