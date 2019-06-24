@@ -144,7 +144,7 @@
             url: url,
             data: data,
             method: method,
-            complete: function(jqXHR, textStatus) {
+            always: function(jqXHR) {
                 var response = ilx.checkResponse(jqXHR);
                 if (response.isHTML) {
                     var $response = response.$;

@@ -1,6 +1,6 @@
 {
   "name": "i-love-ajax",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "The base module of a whole bunch of useful AJAX helpers, built on jQuery.",
   "keywords": [
     "i-love-ajax",
